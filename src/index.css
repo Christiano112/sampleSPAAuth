@@ -1,0 +1,33 @@
+:root {
+  --color-primary: #34d1bf;
+  --color-primary-dark: #2cb8a3;
+  --color-primary-light: #a7f3eb;
+  --color-secondary: #0b4e8f;
+  --color-secondary-dark: #0a3f75;
+  --color-secondary-light: #2d76be;
+  --color-tertiary: #e7efff;
+  --color-tertiary-dark: #d0e0ff;
+  --color-tertiary-light: #f0f7ff;
+  --color-text: #333333;
+  --color-text-dark: #000000;
+  --color-text-light: #666666;
+  --color-background: #f8f8f8;
+  --color-background-dark: #e5e5e5;
+  --color-background-light: #ffffff;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.layout {
+  @apply h-full max-h-fit my-12 mx-auto w-[90%] max-w-2xl bg-background-dark rounded-2xl py-8 px-4 flex flex-col items-center justify-center gap-4;
+}
+
+.input {
+  @apply px-4 py-2 w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent;
+}
+
+.btn {
+  @apply inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary;
+}

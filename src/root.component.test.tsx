@@ -1,9 +1,25 @@
+import React from "react";
 import { render } from "@testing-library/react";
-import Root from "./root.component";
+import { MemoryRouter } from "react-router-dom";
+import Login from "./pages/login";
+import Register from "./pages/register";
 
-describe("Root component", () => {
-  it("should be in the document", () => {
-    const { getByText } = render(<Root name="Testapp" />);
-    expect(getByText(/Testapp is mounted!/i)).toBeInTheDocument();
+describe("Login", () => {
+  it("renders without crashing", () => {
+    render(
+      <MemoryRouter>
+        <Login />
+      </MemoryRouter>
+    );
+  });
+});
+
+describe("Register", () => {
+  it("renders without crashing", () => {
+    render(
+      <MemoryRouter>
+        <Register />
+      </MemoryRouter>
+    );
   });
 });

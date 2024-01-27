@@ -1,8 +1,11 @@
-export default function Root(props) {
+import { StrictMode } from "react";
+import { RouterProvider } from "react-router-dom";
+import AppRouter from "./main";
+
+export default function Root() {
   return (
-    <section>
-      {props.name} is mounted!
-      <h1>This is the Auth Page</h1>
-    </section>
+    <StrictMode>
+      <RouterProvider router={AppRouter} />
+    </StrictMode>
   );
 }
