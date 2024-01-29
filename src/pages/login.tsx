@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import useSubmit from "../utils/submit";
 import { LoginSchema } from "../utils/schema";
+// Input & Button component from styleguide
+import { AppInput, AppButton } from "@octosoft/styleguide";
 
 type LoginDataType = {
   email: string;
@@ -10,7 +12,7 @@ type LoginDataType = {
 const Login = () => {
   const navigate = useNavigate();
   const onSubmit = (data: LoginDataType) => {
-    navigate("/dashboard");
+    navigate("/");
     // console.log(data);
   };
 
@@ -34,13 +36,12 @@ const Login = () => {
             name="email"
             control={control}
             render={({ field }) => (
-              <input
+              <AppInput
                 type="email"
-                {...field}
-                className="input"
-                autoComplete="email"
                 name="email"
                 id="email"
+                placeholder="Email"
+                {...field}
               />
             )}
           />
@@ -56,13 +57,12 @@ const Login = () => {
             name="password"
             control={control}
             render={({ field }) => (
-              <input
+              <AppInput
                 type="password"
-                {...field}
-                className="input"
-                autoComplete="current-password"
                 name="password"
                 id="current-password"
+                placeholder="Password"
+                {...field}
               />
             )}
           />
@@ -78,9 +78,7 @@ const Login = () => {
           <label htmlFor="remember">Remember Me</label>
         </div>
 
-        <button type="submit" className="btn">
-          Login
-        </button>
+        <AppButton type="submit">Login</AppButton>
       </form>
 
       <p className="text-primary-dark text-center">

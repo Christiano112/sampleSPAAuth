@@ -1,25 +1,32 @@
 const { merge } = require("webpack-merge");
-const singleSpaDefaults = require("webpack-config-single-spa-react-ts");
+const singleSpaDefaults = require("webpack-config-single-spa-react");
 
-module.exports = (webpackConfigEnv, argv) => {
+module.exports = (webpackConfigEnv) => {
   const defaultConfig = singleSpaDefaults({
     orgName: "octosoft",
     projectName: "octoAuth",
     webpackConfigEnv,
-    argv,
   });
 
-  return merge(defaultConfig, {
-    // modify the webpack config however you'd like to by adding to this object
-    externals: [/^@octosoft\/.+/, /^sampleSPA\/.+/],
+  const standalonePlugin = defaultConfig.plugins.find(
+    (p) => p.constructor.name === "StandaloneSingleSpaPlugin"
+  );
 
-    module: {
-      rules: [
-        {
-          test: /\.css$/i,
-          use: ["postcss-loader"],
-        },
-      ],
+  standalonePlugin.options.importMapUrl = new URL(
+    "http://localhost:8083/octosoft-styleguide.js"
+  );
+
+  const externals = [/^octosoft\/?.*$/];
+
+  if (webpackConfigEnv.standalone) {
+    externals.push("react", "react-dom");
+  }
+
+  return merge(defaultConfig, {
+    // customizations go here
+    resolve: {
+      extensions: [".mjs", ".js", ".jsx", ".wasm", ".json", ".ts", ".tsx"],
     },
+    externals,
   });
 };

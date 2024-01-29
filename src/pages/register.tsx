@@ -1,6 +1,8 @@
 import { Link, useNavigate } from "react-router-dom";
 import useSubmit from "../utils/submit";
 import { RegisterSchema } from "../utils/schema";
+// Input & Button component from styleguide
+import { AppInput, AppButton } from "@octosoft/styleguide";
 
 type RegisterDataType = {
   fullName: string;
@@ -14,7 +16,7 @@ type RegisterDataType = {
 const Register = () => {
   const navigate = useNavigate();
   const onSubmit = (data: RegisterDataType) => {
-    navigate("/dashboard");
+    navigate("/");
     // console.log(data);
   };
 
@@ -39,14 +41,7 @@ const Register = () => {
             name="fullName"
             control={control}
             render={({ field }) => (
-              <input
-                type="text"
-                {...field}
-                className="input"
-                autoComplete="name"
-                name="name"
-                id="name"
-              />
+              <AppInput type="text" name="name" id="name" {...field} />
             )}
           />
           {errors?.fullName && (
@@ -63,14 +58,7 @@ const Register = () => {
             name="username"
             control={control}
             render={({ field }) => (
-              <input
-                type="text"
-                {...field}
-                className="input"
-                autoComplete="username"
-                name="username"
-                id="username"
-              />
+              <AppInput type="text" name="username" id="username" {...field} />
             )}
           />
           {errors?.username && (
@@ -87,13 +75,12 @@ const Register = () => {
             name="email"
             control={control}
             render={({ field }) => (
-              <input
+              <AppInput
                 type="email"
-                {...field}
-                className="input"
-                autoComplete="email"
                 name="email"
                 id="email"
+                placeholder="Email"
+                {...field}
               />
             )}
           />
@@ -109,14 +96,7 @@ const Register = () => {
             name="phone"
             control={control}
             render={({ field }) => (
-              <input
-                type="tel"
-                {...field}
-                className="input"
-                autoComplete="tel"
-                name="phone"
-                id="phone"
-              />
+              <AppInput type="tel" name="phone" id="phone" {...field} />
             )}
           />
           {errors?.phone && (
@@ -131,13 +111,12 @@ const Register = () => {
             name="password"
             control={control}
             render={({ field }) => (
-              <input
+              <AppInput
                 type="password"
-                {...field}
-                className="input"
-                autoComplete="new-password"
                 name="password"
                 id="new-password"
+                placeholder="********"
+                {...field}
               />
             )}
           />
@@ -155,13 +134,12 @@ const Register = () => {
             name="confirmPassword"
             control={control}
             render={({ field }) => (
-              <input
+              <AppInput
                 type="password"
-                {...field}
-                className="input"
-                autoComplete="new-password"
                 name="confirmPassword"
                 id="current-password"
+                placeholder="********"
+                {...field}
               />
             )}
           />
@@ -172,9 +150,7 @@ const Register = () => {
           )}
         </div>
 
-        <button type="submit" className="btn col-span-2 max-w-fit mx-auto mt-6">
-          Register
-        </button>
+        <AppButton type="submit">Register</AppButton>
       </form>
 
       <p className="text-primary-dark text-center">
